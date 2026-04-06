@@ -116,34 +116,31 @@ document.getElementById("numberConversionOutput").innerHTML = conversionOutput;
 // Part 3: Math & Formatting
 // ==========================
 
-// TODO:
-// 1. Create at least 2-3 numeric variables
-//
-// 2. Perform calculations:
-//    - at least one addition
-//    - at least one other operation (subtract, multiply, or divide)
-//
-// 3. Use at least ONE of the following:
-//    - toFixed()
-//    - toLocaleString()
-//    - Number.parseInt()
-//    - Number.parseFloat()
-//
-// 4. Build a string showing your results
-//
-// 5. Display the results inside the element with id="mathOutput"
+// Example grade scores
+const scoreOne = 85;
+const scoreTwo = 92;
+const scoreThree = 78;
 
-// ==========================
-// Part 4: Conditionals
-// ==========================
+// Calculate totals
+const totalScore = scoreOne + scoreTwo + scoreThree;
 
-// TODO:
-// 1. Write at least TWO if/else statements
-//
-// Ideas:
-// - check if a value is NaN
-// - check if a number is an integer
-// - check if a result is greater than a certain value
-//
-// 2. Display a message on the page based on the condition
-//    (append it to an existing section or create a new message)
+// Calculate average
+const averageScore = totalScore / 3;
+
+// Format the average to 2 decimal places
+const formattedAverage = averageScore.toFixed(2);
+
+
+// Build math output
+let mathOutput = "";
+
+mathOutput += "Score 1: " + scoreOne + "<br>";
+mathOutput += "Score 2: " + scoreTwo + "<br>";
+mathOutput += "Score 3: " + scoreThree + "<br><br>";
+
+mathOutput += "Total Score: " + totalScore + "<br>";
+mathOutput += "Average Score: " + formattedAverage + "<br>";
+
+
+// Display results
+document.getElementById("mathOutput").innerHTML = mathOutput;
