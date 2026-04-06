@@ -79,6 +79,35 @@ conversionOutput +=
   " → isNaN: " + isNaNFour +
   " → isInteger: " + isIntegerFour + "<br>";
 
+// ==========================
+// Part 4: Conditionals
+// ==========================
+
+// Conditional example 1
+let messageOne = "";
+
+if (Number.isNaN(convertedThree)) {
+  messageOne = "<p>The value '" + valueThree + "' could not be converted into a number.</p>";
+} else {
+  messageOne = "<p>The value '" + valueThree + "' was successfully converted.</p>";
+}
+
+
+// Conditional example 2
+let messageTwo = "";
+
+if (convertedFour > 60) {
+  messageTwo = "<p>The converted decimal value '" + valueFour + "' is greater than 60.</p>";
+} else {
+  messageTwo = "<p>The converted decimal value '" + valueFour + "' is 60 or less.</p>";
+}
+
+
+// Combine all conversion results
+conversionOutput += messageOne;
+conversionOutput += messageTwo;
+
+
 // Display results
 document.getElementById("numberConversionOutput").innerHTML = conversionOutput;
 
