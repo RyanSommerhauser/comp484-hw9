@@ -119,6 +119,11 @@ document.getElementById("numberConversionOutput").innerHTML = conversionOutput;
 // Store assignment scores
 let scores = [];
 
+// Default Scores
+scores.push(100);
+scores.push(50);
+scores.push(85);
+
 // Get page elements
 const scoreInput = document.getElementById("scoreInput");
 const addButton = document.getElementById("addScoreBtn");
@@ -126,95 +131,85 @@ const clearButton = document.getElementById("clearScoresBtn");
 const assignmentList = document.getElementById("assignmentList");
 const mathOutput = document.getElementById("mathOutput");
 
+// Function to update the display based on current scores
+function updateScoresDisplay() {
+  if (scores.length === 0) {
+    assignmentList.innerHTML = "No assignments added yet.";
+    mathOutput.innerHTML = "Results will appear here";
+    return;
+  }
 
-// When the button is clicked
+  // Update assignment list display
+  assignmentList.innerHTML = scores.join(", ");
+
+  // Calculate total
+  let total = 0;
+  for (let i = 0; i < scores.length; i++) {
+    total += scores[i];
+  }
+
+  // Calculate average
+  const average = total / scores.length;
+  const formattedAverage = average.toFixed(2);
+
+  // Determine letter grade
+  let letterGrade;
+  if (average >= 90) {
+    letterGrade = "A";
+  } else if (average >= 80) {
+    letterGrade = "B";
+  } else if (average >= 70) {
+    letterGrade = "C";
+  } else if (average >= 60) {
+    letterGrade = "D";
+  } else {
+    letterGrade = "F";
+  }
+
+  // Pass/Fail using ternary
+  const passFail = average >= 70 ? "PASS" : "FAIL";
+
+  // Display results
+  mathOutput.innerHTML =
+    "Total Assignments: " + scores.length + "<br>" +
+    "Average Score: " + formattedAverage + "<br>" +
+    "Letter Grade: " + letterGrade + "<br>" +
+    "Result: " + passFail;
+}
+
+// ==========================
+// Add Assignment Button
+// ==========================
 addButton.addEventListener("click", function () {
+  const enteredValue = scoreInput.value;
+  const score = Number(enteredValue);
 
-// Get value from input and convert to number
-const enteredValue = scoreInput.value;
-const score = Number(enteredValue);
+  // Validate input
+  if (Number.isNaN(score)) {
+    mathOutput.innerHTML = "Please enter a valid number.";
+    return;
+  }
 
-// Validate input
-if (Number.isNaN(score)) {
-mathOutput.innerHTML = "Please enter a valid number.";
-return;
-}
+  // Add score to array
+  scores.push(score);
 
-// Add score to the list
-scores.push(score);
+  // Clear input
+  scoreInput.value = "";
 
-// Clear input box
-scoreInput.value = "";
-
-// Update assignment list display
-assignmentList.innerHTML = scores.join(", ");
-
-// ======================
-// Calculate Total
-// ======================
-
-let total = 0;
-
-for (let i = 0; i < scores.length; i++) {
-total += scores[i];
-}
-
-// Calculate average
-const average = total / scores.length;
-
-// Format average
-const formattedAverage = average.toFixed(2);
-
-
-// ======================
-// Letter Grade
-// ======================
-
-let letterGrade;
-
-if (average >= 90) {
-letterGrade = "A";
-} else if (average >= 80) {
-letterGrade = "B";
-} else if (average >= 70) {
-letterGrade = "C";
-} else if (average >= 60) {
-letterGrade = "D";
-} else {
-letterGrade = "F";
-}
-
-
-// ======================
-// Pass / Fail (Ternary)
-// ======================
-
-const passFail = average >= 70 ? "PASS" : "FAIL";
-
-
-// Display results
-mathOutput.innerHTML =
-"Total Assignments: " + scores.length + "<br>" +
-"Average Score: " + formattedAverage + "<br>" +
-"Letter Grade: " + letterGrade + "<br>" +
-"Result: " + passFail;
-
+  // Update display
+  updateScoresDisplay();
 });
 
 // ==========================
 // Clear All Scores Button
 // ==========================
-
 clearButton.addEventListener("click", function () {
-
-  // Empty the scores array
   scores = [];
-
-  // Reset display text
-  assignmentList.innerHTML = "No assignments added yet.";
-  mathOutput.innerHTML = "Results will appear here";
-
-  // Clear the input box
   scoreInput.value = "";
-
+  updateScoresDisplay();
 });
+
+// ==========================
+// Initialize page with default scores
+// ==========================
+updateScoresDisplay();
