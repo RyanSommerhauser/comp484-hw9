@@ -22,7 +22,7 @@ Features:
 Pages link:
 [**GitHub Pages link**](https://ryansommerhauser.github.io/comp484-hw9/)
 
-Screenshot:
+Screen
 ![Screenshot of the webpage](screenshot.png)
 
 Short Reflection:
