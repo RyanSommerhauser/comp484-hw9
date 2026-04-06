@@ -10,6 +10,28 @@
 // 5. Create a string in the format: "Today is MM/DD/YYYY"
 // 6. Display the result in the element with id="dateOutput"
 
+// Create a Date object for the current date
+const currentDate = new Date();
+
+// Extract month, day, and year
+let month = currentDate.getMonth() + 1; // months are 0-based
+let day = currentDate.getDate();
+let year = currentDate.getFullYear();
+
+// Add leading zeros if needed
+if (month < 10) {
+  month = "0" + month;
+}
+
+if (day < 10) {
+  day = "0" + day;
+}
+
+// Create the formatted date string
+const formattedDate = "Today is " + month + "/" + day + "/" + year;
+
+// Display it on the webpage
+document.getElementById("dateOutput").textContent = formattedDate;
 // ==========================
 // Part 2: Number Conversion
 // ==========================
