@@ -2,14 +2,6 @@
 // Part 1: Date Display
 // ==========================
 
-// TODO:
-// 1. Create a Date object
-// 2. Get the current month, day, and year
-// 3. Adjust month if needed (JavaScript months are 0-based)
-// 4. Add leading zeros to month/day if needed
-// 5. Create a string in the format: "Today is MM/DD/YYYY"
-// 6. Display the result in the element with id="dateOutput"
-
 // Create a Date object for the current date
 const currentDate = new Date();
 
@@ -36,36 +28,60 @@ document.getElementById("dateOutput").textContent = formattedDate;
 // Part 2: Number Conversion
 // ==========================
 
-// TODO:
-// 1. Create at least 4 separate variables:
-//    - at least 2 numeric strings (example: "42")
-//    - at least 1 decimal string (example: "19.75")
-//    - at least 1 non-numeric string (example: "hello")
+// Create starting values
+const valueOne = "67";          // numeric string
+const valueTwo = "124";         // numeric string
+const valueThree = "example";   // non-numeric string
+const valueFour = "59.48";      // decimal string
 
-// TODO:
-// 2. For EACH variable:
-//
-//    a. Convert the value using Number()
-//    b. Check if it is NaN using Number.isNaN()
-//    c. Check if it is an integer using Number.isInteger()
 
-// TODO:
-// 3. For EACH value, create a sentence showing:
-//    - original value
-//    - converted value
-//    - whether it is NaN
-//    - whether it is an integer
-//
-// Example format (you must create your own variables):
-// "Original: '42' -> Converted: 42 -> isNaN: false -> isInteger: true"
+// Convert values using Number()
+const convertedOne = Number(valueOne);
+const convertedTwo = Number(valueTwo);
+const convertedThree = Number(valueThree);
+const convertedFour = Number(valueFour);
 
-// TODO:
-// 4. Combine all your results into ONE string
-//    (you can use + to join multiple strings)
 
-// TODO:
-// 5. Display the final result inside the element:
-//    id="numberConversionOutput"
+// Check NaN status
+const isNaNOne = Number.isNaN(convertedOne);
+const isNaNTwo = Number.isNaN(convertedTwo);
+const isNaNThree = Number.isNaN(convertedThree);
+const isNaNFour = Number.isNaN(convertedFour);
+
+
+// Check integer status
+const isIntegerOne = Number.isInteger(convertedOne);
+const isIntegerTwo = Number.isInteger(convertedTwo);
+const isIntegerThree = Number.isInteger(convertedThree);
+const isIntegerFour = Number.isInteger(convertedFour);
+
+
+// Build output sentences
+let conversionOutput = "";
+
+conversionOutput +=
+  "Original: '" + valueOne + "' → Converted: " + convertedOne +
+  " → isNaN: " + isNaNOne +
+  " → isInteger: " + isIntegerOne + "<br>";
+
+conversionOutput +=
+  "Original: '" + valueTwo + "' → Converted: " + convertedTwo +
+  " → isNaN: " + isNaNTwo +
+  " → isInteger: " + isIntegerTwo + "<br>";
+
+conversionOutput +=
+  "Original: '" + valueThree + "' → Converted: " + convertedThree +
+  " → isNaN: " + isNaNThree +
+  " → isInteger: " + isIntegerThree + "<br>";
+
+conversionOutput +=
+  "Original: '" + valueFour + "' → Converted: " + convertedFour +
+  " → isNaN: " + isNaNFour +
+  " → isInteger: " + isIntegerFour + "<br>";
+
+// Display results
+document.getElementById("numberConversionOutput").innerHTML = conversionOutput;
+
 
 // ==========================
 // Part 3: Math & Formatting
