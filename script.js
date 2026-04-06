@@ -116,31 +116,105 @@ document.getElementById("numberConversionOutput").innerHTML = conversionOutput;
 // Part 3: Math & Formatting
 // ==========================
 
-// Example grade scores
-const scoreOne = 85;
-const scoreTwo = 92;
-const scoreThree = 78;
+// Store assignment scores
+let scores = [];
 
-// Calculate totals
-const totalScore = scoreOne + scoreTwo + scoreThree;
+// Get page elements
+const scoreInput = document.getElementById("scoreInput");
+const addButton = document.getElementById("addScoreBtn");
+const clearButton = document.getElementById("clearScoresBtn");
+const assignmentList = document.getElementById("assignmentList");
+const mathOutput = document.getElementById("mathOutput");
+
+
+// When the button is clicked
+addButton.addEventListener("click", function () {
+
+// Get value from input and convert to number
+const enteredValue = scoreInput.value;
+const score = Number(enteredValue);
+
+// Validate input
+if (Number.isNaN(score)) {
+mathOutput.innerHTML = "Please enter a valid number.";
+return;
+}
+
+// Add score to the list
+scores.push(score);
+
+// Clear input box
+scoreInput.value = "";
+
+// Update assignment list display
+assignmentList.innerHTML = scores.join(", ");
+
+// ======================
+// Calculate Total
+// ======================
+
+let total = 0;
+
+for (let i = 0; i < scores.length; i++) {
+total += scores[i];
+}
 
 // Calculate average
-const averageScore = totalScore / 3;
+const average = total / scores.length;
 
-// Format the average to 2 decimal places
-const formattedAverage = averageScore.toFixed(2);
+// Format average
+const formattedAverage = average.toFixed(2);
 
 
-// Build math output
-let mathOutput = "";
+// ======================
+// Letter Grade
+// ======================
 
-mathOutput += "Score 1: " + scoreOne + "<br>";
-mathOutput += "Score 2: " + scoreTwo + "<br>";
-mathOutput += "Score 3: " + scoreThree + "<br><br>";
+let letterGrade;
 
-mathOutput += "Total Score: " + totalScore + "<br>";
-mathOutput += "Average Score: " + formattedAverage + "<br>";
+if (average >= 90) {
+letterGrade = "A";
+} else if (average >= 80) {
+letterGrade = "B";
+} else if (average >= 70) {
+letterGrade = "C";
+} else if (average >= 60) {
+letterGrade = "D";
+} else {
+letterGrade = "F";
+}
+
+
+// ======================
+// Pass / Fail (Ternary)
+// ======================
+
+const passFail = average >= 70 ? "PASS" : "FAIL";
 
 
 // Display results
-document.getElementById("mathOutput").innerHTML = mathOutput;
+mathOutput.innerHTML =
+"Total Assignments: " + scores.length + "<br>" +
+"Average Score: " + formattedAverage + "<br>" +
+"Letter Grade: " + letterGrade + "<br>" +
+"Result: " + passFail;
+
+});
+
+// ==========================
+// Clear All Scores Button
+// ==========================
+
+clearButton.addEventListener("click", function () {
+
+  // Empty the scores array
+  scores = [];
+
+  // Reset display text
+  assignmentList.innerHTML = "No assignments added yet.";
+  mathOutput.innerHTML = "Results will appear here";
+
+  // Clear the input box
+  scoreInput.value = "";
+
+});
